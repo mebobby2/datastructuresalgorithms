@@ -1,0 +1,28 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1343\cocoasubrtf140
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww12680\viewh9420\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+
+\f0\fs24 \cf0 How do I check if an integer is even or odd using bitwise operators?\
+\
+Binary data is stored with bits.\
+\
+The lowest order bit, which is 2^0 is 1. Hence, a number is odd if the lowest order bit is set. Otherwise it\'92s even. This is because if a number is odd, it MUST have a 1 in it\'92s makeup. And if a number is even, it MUST NOT have a one in its makeup.\
+\
+E.g. Decimal     Binary (of 4bits)\
+       1                 0001\
+       2                 0010\
+       3		0011\
+       4                 0100\
+       5                0101\
+       6                 0110\
+\
+So to check if a number is odd or even, we simply need to check if the number\'92s lowest order bit is set or not.\
+\
+We do this with a bitwise & operation against a the number 1 in decimal\
+\
+e.g for 5\
+       0101\
+    & 0001\
+   = 0001 (So 5 is odd since lowest bit is set)}
