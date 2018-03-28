@@ -1,1 +1,4 @@
-https://www.hiredintech.com/classrooms/algorithm-design/lesson/12/task/14
+https://www.hiredintech.com/classrooms/algorithm-design/lesson/19
+
+Problems skipped:
+https://www.hiredintech.com/classrooms/algorithm-design/lesson/12/task/15
