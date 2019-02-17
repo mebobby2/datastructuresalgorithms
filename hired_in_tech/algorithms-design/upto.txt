@@ -2,7 +2,3 @@ https://www.hiredintech.com/classrooms/algorithm-design/lesson/19
 
 Problems skipped:
 https://www.hiredintech.com/classrooms/algorithm-design/lesson/12/task/15
-
-
-Then do:
-https://www.hiredintech.com/courses/system-design
