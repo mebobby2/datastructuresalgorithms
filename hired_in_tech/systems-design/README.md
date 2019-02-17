@@ -72,6 +72,41 @@ The bottle will come from the data layer. Scanning the db on each call from the 
 ## 4. Scaling the Abstract Design
 You can now dive into making the abstract design more detailed. Usually, this means making your system scale.
 
+### Vertical Scalling
+* Buying more computing resources.
+* Has physical limits
+
+### Horizontal Scaling
+* Using cheaper machines to share the load
+* More often than not, have to use a load balancer to distribute the load. However, load balancer can be a single point of failure. Can use multiple load balancers and some election algorithm to select an active load balancer.
+* Round robin is the simpliest routing strategy. However, it does not take into account server load, so a machine could be over-worked while others are not doing much
+* How to shared sessions? - sticky sessions
+1. Have a shared storage for sessions. Then this becomes a failure point. Could use RAID hard drives to introduce redundancy if one of the drives fail
+2. Store a server identifier in the user's cookie so that user's request is always routed to the same server
+
+### Caching
+* Invalidation strategy is important
+#### Examples
+* File based caching - cache the generated html pages so do not have to generate the html page on each request
+* Database query caching
+* memcached - memory cache. Expiration rules is important.
+
+### Replication
+* DB replication - master-slave topology.
+* Increase in redundancy => reduce single point of failure.
+* Load balance across the slave databases for read-heavy traffic. However, load balancer can be a single point of failure.
+* For write-heavy traffic - can use master-master setup
+* Generally - if have more than one db, it's always a good idea to use a load balancer between them.
+1. If there is no load balancer, and your webservers can connect to every available db, then your webservers need to do the routing at the application level. Then your application is aware of your topology. We want to introduce a layer of abstraction so the application only knows to connect to one db
+2. If there is no load balancer, then every time u add a new webserver, u need to configure it to connect to all the dbs - this quickly becomes a maintenance nightmare.
+
+### Partition
+* Partition database. E.g. users with last name from A-M go to db1 and others go to db2.
+
+### High Availability
+* AWS have multiple data-centers (called Availability Zones) in a single Region (e.g. region = Singapore)
+* AWS also have multiple regions
+* How do u load balance traffic across availability zones? Do it at the DNS level. Geo load balancer
 
 # Other notes
 ## What is base 64 encoding used for?
@@ -119,6 +154,4 @@ To get the Base64 code, we must use the base64 mapping table (can view on wikipe
 therefore the aforementioned hex word is transformed into the Base64 string 'qzQ'.
 
 # Upto
-https://www.hiredintech.com/classrooms/system-design/lesson/60
-
-Watching the CS75 lecture -  53min 14 sec mark
+https://www.hiredintech.com/classrooms/system-design/lesson/61
