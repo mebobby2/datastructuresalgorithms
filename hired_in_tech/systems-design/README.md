@@ -108,6 +108,43 @@ You can now dive into making the abstract design more detailed. Usually, this me
 * AWS also have multiple regions
 * How do u load balance traffic across availability zones? Do it at the DNS level. Geo load balancer
 
+### Example (bit.ly)
+1. Application Service layer
+* start with one machine (there is not business logic in our Redirection and Shortening requests) so one machine should be able to handle 400 equests per second pretty easily.
+* measure how far it takes us (load tests)
+* Also, our api has no shared state like sessions etc
+* Add a load balancer + a cluster of machines over time: to deal with spike-y traffic, to increase availability
+
+2. Data Storage
+* Billions of objects
+* Each object is fairly small (< 1K)
+* There no relationships between objects
+* Reads are 9x more frequent than writes (360 reads, 40 writes per second)
+* 3TBs of urls, 36GB of hashes
+
+MySQL:
+* Widely used
+* Mature technology
+* Clear scaling paradigms (sharding, master/slave replication, master/master replication)
+* Used by Facebook, Twitter, Google etc
+* Index lookups are very fast
+
+table schema:
+hash: varchar(6)
+original_url: varchar(512)
+
+1. Uses one MySQL table with the schema above
+2. Create a unique index on the hash (36GB+). We want to hold it in memory to speed up lookups
+3.  Vertical scaling of the MySQL machine for a while. Memory is cheap these days
+4. Eventually, partition the data: 5 partitions, 600GB of data, 8GB of indexes (over 5 years). Can partition based on the first char of the hash mod number of replicas
+* Master-slave (reading from the slaves, writes to the master)
+
+# Tips
+## Everything is a tradeoff
+This is one of the most fundamental concepts in system design. It all boils down to balancing between time to market, system complexity, cost of development, cost of maintenance, availability, and many other things.
+
+Being able to understand and discuss these trade-offs is what system design (and thus system design questions) is all about.
+
 # Other notes
 ## What is base 64 encoding used for?
 When you have some binary data that you want to ship across a network, you generally don't do it by just streaming the bits and bytes over the wire in a raw format. Why? because some media are made for streaming text. You never know -- some protocols may interpret your binary data as control characters (like a modem), or your binary data could be screwed up because the underlying protocol might think that you've entered a special character combination (like how FTP translates line endings).
@@ -154,4 +191,4 @@ To get the Base64 code, we must use the base64 mapping table (can view on wikipe
 therefore the aforementioned hex word is transformed into the Base64 string 'qzQ'.
 
 # Upto
-https://www.hiredintech.com/classrooms/system-design/lesson/61
+https://www.hiredintech.com/classrooms/system-design/lesson/63
