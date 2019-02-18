@@ -190,5 +190,9 @@ To get the Base64 code, we must use the base64 mapping table (can view on wikipe
 
 therefore the aforementioned hex word is transformed into the Base64 string 'qzQ'.
 
-# Upto
-https://www.hiredintech.com/classrooms/system-design/lesson/63
+## Salts
+`In cryptography, a salt is random data that is used as an additional input to a one-way function that "hashes" data, a password or passphrase. Salts are used to safeguard passwords in storage. Historically a password was stored in plaintext on a system, but over time additional safeguards developed to protect a user's password against being read from the system. A salt is one of those methods.
+
+A new salt is randomly generated for each password. In a typical setting, the salt and the password (or its version after Key stretching) are concatenated and processed with a cryptographic hash function, and the resulting output (but not the original password) is stored with the salt in a database. Hashing allows for later authentication without keeping and therefore risking the plaintext password in the event that the authentication data store is compromised.
+
+Salts defend against dictionary attacks or against their hashed equivalent, a pre-computed rainbow table attack.[1] Since salts do not have to be memorized by humans they can make the size of the rainbow table required for a successful attack prohibitively large without placing a burden on the users. Since salts are different in each case, they also protect commonly used passwords, or those users who use the same password on several sites, by making all salted hash instances for the same password different from each other.
