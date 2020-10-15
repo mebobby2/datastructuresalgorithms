@@ -37,3 +37,25 @@
 * mergesort have O(nlogn) worst time complexity while quicksort has O(n^2)
 * however, quicksort has space complexity of O(logn) while mergesort has(n)
 * so quicksort is optimized for space at the cost of worst case complexity
+
+## BigO Ranking
+(n = size of input, c = some constant)
+
+* O(1)
+* O(logn)
+  * logarithmic
+  * binary search trees
+* O(n)
+* O(nlogn)
+* O(n^2)
+  * quadratic
+* O(n^c)
+  * polynomial time
+* O(c^n)
+  * exponential
+  * recursive algorithms
+  * growth doubles with each addition to the input data set
+* O(n!)
+  * factorial
+
+So, polynomial time is the boundary of problems that can be solved practically by a computer. Exponential and factorial are impractical to solve.
