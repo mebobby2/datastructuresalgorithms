@@ -37,6 +37,9 @@
 * mergesort have O(nlogn) worst time complexity while quicksort has O(n^2)
 * however, quicksort has space complexity of O(logn) while mergesort has(n)
 * so quicksort is optimized for space at the cost of worst case complexity
+* quicksort is faster in practice, but mergesort has guaranteeed O(nlogn) running time
+* important to remember that sorting takes O(nlogn) because most problems may require you to sort the input first
+  * hence the overall algorithm may take O(nlogn) if the other operations on the sorted list is constant
 
 ## BigO Ranking
 (n = size of input, c = some constant)
