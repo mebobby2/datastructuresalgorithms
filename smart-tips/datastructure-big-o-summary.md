@@ -45,6 +45,8 @@
 * O(logn)
   * logarithmic
   * binary search trees
+  * basically, any algorithm that involves disgarding some inputs based on a decision
+    * this is how a tree works: at a node, you make a decision, and go down a specific path while disgarding the other paths
 * O(n)
 * O(nlogn)
 * O(n^2)
